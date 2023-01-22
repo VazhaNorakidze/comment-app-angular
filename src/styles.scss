@@ -1,1 +1,270 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
+
+:root {
+--Moderate-blue: hsl(238, 40%, 52%);
+--Soft-Red: hsl(358, 79%, 66%);
+--Light-grayish-blue: hsl(239, 57%, 85%);
+--Pale-red: hsl(357, 100%, 86%);
+
+--Dark-blue: hsl(212, 24%, 26%);
+--Grayish-Blue: hsl(211, 10%, 45%);
+--Light-gray: hsl(223, 19%, 93%);
+--Very-light-gray: hsl(228, 33%, 97%);
+--White: hsl(0, 0%, 100%);
+  }
+
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+font-family: "Rubik", sans-serif;
+font-size: 16px;
+  }
+
+body {
+height: 100%;
+width: 100%;
+padding-top: 3rem;
+background-color:var(--Very-light-gray);
+}
+
+main{
+max-width: 45.5rem;
+margin: 0 auto;
+padding: 1rem;
+display: flex;
+flex-direction: column;
+background-color:var(--Very-light-gray);
+}
+
+.comment-body, .reply-body{
+width:100%;
+background-color:var(--White);
+padding-bottom:1rem;
+padding-right:2rem;
+margin-top: 1rem;
+border-radius: 15px;
+display:flex;
+}
+
+.reply-body{
+width:90%;
+margin-left:10%;
+position:relative;
+}
+
+
+.commentinnerleft{
+width:10%;
+display:flex;
+margin:1rem;
+align-items: center;
+justify-content: center;
+}
+
+.commentinnerscore{
+width:40px;
+height:100px;
+border-radius:12px;
+background-color:var(--Very-light-gray);
+display:flex;
+flex-direction: column;
+justify-content: space-around;
+align-items:center;
+font-weight:600;
+color:var(--Moderate-blue);
+  button{
+    border:0;
+    font-weight:700;
+    font-size:20px;
+    background-color:transparent;
+    color:var(--Light-grayish-blue);
+    cursor:pointer;
+  }
+}
+
+.commentinnerright{
+width:90%;
+
+}
+
+.commentinnerinfo{
+display:flex;
+align-items:center;
+justify-content: space-between;
+height:40px;
+margin:1rem;
+margin-left:0;
+}
+
+.commentinneruser, .replyinneruser{
+display:flex;
+align-items:center;
+justify-content: space-between;
+width:40%;
+}
+
+.replyinneruser{
+width:45%;
+}
+
+.commentinneruser .date,.replyinneruser .date {
+color:var(--Grayish-Blue);
+}
+
+.commentinnerinfo img{
+width:30px;
+height:30px;
+}
+
+.commentinnertext{
+color:var(--Grayish-Blue);
+}
+
+.comment-inner-text{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.write-comment, .write-reply{
+width:100%;
+background-color:var(--White);
+padding:1rem;
+margin-top: 1rem;
+border-radius: 15px;
+display:flex;
+}
+
+.write-reply{
+  width:90%;
+  margin-left:10%;
+}
+
+
+.curruserimg{
+  width:10%;
+  display:flex;
+  justify-content: center;
+}
+
+.curruserimg img{
+  width:40px;
+  height:40px;
+}
+
+.curruserinput{
+  width:72%;
+  display:flex;
+  justify-content: center;
+}
+
+.curruserinput textarea{
+  border: 1px solid var(--Light-grayish-blue);
+  resize: none;
+  border-radius: 10px;
+  height: 100px;
+  width:98%
+
+}
+.curruserinput textarea:focus {
+  outline: none !important;
+  border-color: var(--Moderate-blue);
+}
+
+.currusersend {
+  width:18%;
+  display:flex;
+  justify-content: center;
+}
+
+.currusersend button, .update-edit {
+  border:none;
+  border-radius: 8px;
+  width:100px;
+  height:50px;
+  background-color: var(--Moderate-blue);
+  color:var(--White);
+  font-weight: 500;
+  cursor:pointer;
+}
+.update-edit{
+  margin-top:5px;
+}
+
+.delete-button{
+  color:var(--Soft-Red);
+  font-weight:500;
+  cursor:pointer;
+}
+
+.reply-button, .edit-button{
+  color:var(--Moderate-blue);
+  font-weight:500;
+  cursor:pointer;
+}
+
+.edit-button {
+  padding-left:20px;
+}
+
+.modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px hsla(0,0%,0%,0.1);
+  z-index: 100;
+  width: 80%;
+  max-width: 400px;
+}
+
+.modal-title {
+  text-align: start;
+  margin-bottom: 1rem;
+}
+
+.modal-context {
+  text-align: start;
+  margin-bottom: 2rem;
+}
+
+.update__btns {
+  display: flex;
+  justify-content: space-around;
+}
+.modal button{
+  padding:10px;
+  color:var(--Very-light-gray);
+  border:0;
+}
+
+.btn-gray{
+  background-color:var(--Grayish-Blue) ;
+}
+.btn-red{
+  background-color:var(--Soft-Red) ;
+}
+
+.input-edit{
+  border: 1px solid var(--Light-grayish-blue);
+  resize: none;
+  border-radius: 10px;
+  height: 100px;
+  width:100%
+}

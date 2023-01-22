@@ -1,0 +1,12 @@
+<section class="write-comment">
+  <div class="curruserimg">
+    <img [src]="'../../assets/' + currentUserData.image.png" />
+  </div>
+
+  <div class="curruserinput">
+    <textarea id="inputComment" [(ngModel)]="inputComment"> </textarea>
+  </div>
+  <div class="currusersend">
+    <button (click)="onAddComment()">SEND</button>
+  </div>
+</section>
