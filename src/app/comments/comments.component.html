@@ -1,0 +1,153 @@
+<ng-container *ngFor="let comment of commentsData">
+  <section class="comment-body">
+    <div class="commentinnerleft">
+      <!-- <div class = 'commentinnerscore' >
+        <button (click)="upVote(comment)">+</button>
+          {{comment.score}}
+        <button (click)="downVote(comment)">-</button>
+      </div> -->
+      <app-vote-buttons
+        [score]="comment.score"
+        (upVote)="upVote(comment)"
+        (downVote)="downVote(comment)"
+      ></app-vote-buttons>
+    </div>
+    <div class="commentinnerright">
+      <div class="commentinnerinfo">
+        <div class="commentinneruser">
+          <img [src]="'../../assets/' + comment.user.image.png" />
+          <span
+            ><b>{{ comment.user.username }}</b></span
+          >
+          <span class="date">{{ comment.createdAt }}</span>
+        </div>
+        <div id="commentinnerbtns">
+          <!-- here goes buttons  -->
+          <div
+            *ngIf="
+              comment.user.username == currentUserData.username;
+              else notuser
+            "
+          >
+            <span
+              class="delete-button"
+              (click)="showDeleteModal('comment', comment.id)"
+              >Delete</span
+            >
+            <span class="edit-button" (click)="editingCommentId = comment.id"
+              >Edit</span
+            >
+          </div>
+          <ng-template #notuser>
+            <div>
+              <span class="reply-button" (click)="showReplyDiv(comment)"
+                >Reply</span
+              >
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="commentinnertext" *ngIf="editingCommentId !== comment.id">
+        <p>{{ comment.content }}</p>
+      </div>
+      <div class="comment-inner-text" *ngIf="editingCommentId === comment.id">
+        <textarea class="input-edit" [(ngModel)]="comment.content"></textarea>
+        <button class="update-edit" (click)="updateComment(comment)">
+          Update
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="write-reply" *ngIf="showReplyDivId === comment.id">
+    <div class="curruserimg">
+      <img [src]="'../../assets/' + currentUserData.image.png" />
+    </div>
+    <div class="curruserinput">
+      <textarea [(ngModel)]="replyContent"></textarea>
+    </div>
+    <div class="currusersend">
+      <button (click)="addReply(comment)">Reply</button>
+    </div>
+  </section>
+
+  <section class="reply-body" *ngFor="let reply of comment.replies">
+    <div class="commentinnerleft">
+      <!-- <div class = 'commentinnerscore' >
+          <button (click)="upVote(reply)">+</button>
+            {{reply.score}}
+          <button (click)="downVote(reply)">-</button>
+        </div> -->
+      <app-vote-buttons
+        [score]="reply.score"
+        (upVote)="upVote(reply)"
+        (downVote)="downVote(reply)"
+      ></app-vote-buttons>
+    </div>
+    <div class="commentinnerright">
+      <div class="commentinnerinfo">
+        <div class="replyinneruser">
+          <img [src]="'../../assets/' + reply.user.image.png" />
+          <span
+            ><b>{{ reply.user.username }}</b></span
+          >
+          <span class="date">{{ reply.createdAt }}</span>
+        </div>
+        <div id="commentinnerbtns">
+          <!-- here goes buttons  -->
+          <div
+            *ngIf="
+              reply.user.username == currentUserData.username;
+              else notuser
+            "
+          >
+            <span
+              class="delete-button"
+              (click)="showDeleteModal('reply', reply.id)"
+              >Delete</span
+            >
+            <span class="edit-button">Edit</span>
+          </div>
+          <ng-template #notuser>
+            <div>
+              <span class="reply-button">Reply</span>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="commentinnertext">
+        <p>{{ reply.content }}</p>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<section class="write-comment">
+  <div class="curruserimg">
+    <img [src]="'../../assets/' + currentUserData.image.png" />
+  </div>
+
+  <div class="curruserinput">
+    <textarea id="inputComment" [(ngModel)]="inputComment"> </textarea>
+  </div>
+  <div class="currusersend">
+    <button id="addComment" (click)="addComment()">SEND</button>
+  </div>
+</section>
+<!-- <app-write-comment
+  [currentUserData]="currentUserData"
+  (commentAdded)="addComment(inputComment)"
+></app-write-comment> -->
+
+<div class="modal" *ngIf="showModal">
+  <h3 class="fw-500 modal-title">Delete comment</h3>
+  <p class="modal-context">
+    Are you sure you want to delete this comment? This will remove the comment
+    and can’t be undone.
+  </p>
+  <div class="update__btns d-flex">
+    <button class="btn-gray" (click)="showModal = false">NO, CANCEL</button>
+    <button class="btn-red" (click)="confirmDelete()">YES, DELETE</button>
+  </div>
+</div>
